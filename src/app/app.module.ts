@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppCommonModule } from '../lib/common';
+import { NgbDropdownModule } from '../lib/ng-bootstrap/dropdown/dropdown.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     CommonModule,
-    NgbModule.forRoot(),
+    NgbDropdownModule.forRoot(),
     AppCommonModule.forRoot()
   ],
   providers: [],
