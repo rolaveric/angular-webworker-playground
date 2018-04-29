@@ -2,16 +2,11 @@
 require('zone.js/dist/zone-node');
 require('reflect-metadata');
 
-const { enableProdMode } = require('@angular/core');
-
 const express = require('express');
 const { join } = require('path');
 const { readFileSync } = require('fs');
 const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
 const { ngExpressEngine } = require('@nguniversal/express-engine');
-
-// Faster server renders w/ Prod mode (dev mode never needed)
-enableProdMode();
 
 const cwd = process.cwd();
 const PORT = process.env.PORT || 4200;
