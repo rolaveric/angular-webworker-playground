@@ -204,15 +204,15 @@ export class NgbDropdown implements OnInit {
 
   // FIXME: `eventTarget` always comes out as `undefined` on `platform-webworker`
   @HostListener('document:click', ['$event', '$event.target'])
-  closeFromClick($event, eventTarget) {
+  closeFromClick($event, targetElement) {
     if (this._open && this.autoClose && $event.button !== 2) {
-      this._isEventFromToggle(eventTarget)
+      this._isEventFromToggle(targetElement)
         .then((isEventFromToggle) => {
           if (!isEventFromToggle) {
             if (this.autoClose === true) {
               this.close();
             } else if (this.autoClose) {
-              this._isEventFromMenu(eventTarget)
+              this._isEventFromMenu(targetElement)
                 .then((isEventFromMenu) => {
                   if (this.autoClose === 'inside' && isEventFromMenu) {
                     this.close();
