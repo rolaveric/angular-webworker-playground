@@ -1,33 +1,242 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
-  <div class="row">
+  <div class="row mb-3">
     <div class="col">
-      <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button class="dropdown-item" (click)="buttonClick(1)">Action - 1</button>
-          <button class="dropdown-item" (click)="buttonClick(2)">Another Action</button>
-          <button class="dropdown-item" (click)="buttonClick(3)">Something else is here</button>
+      <h1 class="display-3">platform-webworker playground</h1>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <h2>ng-bootstrap samples</h2>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col">
+      <h3>Accordion <i class="fa fa-exclamation-triangle"></i></h3>
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel title="Simple">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+            labore sustainable VHS.
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span>&#9733; <b>Fancy</b> title &#9733;</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+            labore sustainable VHS.
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Disabled" [disabled]="true">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+            labore sustainable VHS.
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+      <h4>Known issues</h4>
+      <ul>
+        <li>
+          Fancy title scenario doesn't work (reason unknown)<br>
+          TODO Find root cause. Raise github issues if necessary.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col">
+      <h3>Alert <i class="fa fa-check"></i></h3>
+      <ngb-alert [dismissible]="false">
+        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+      </ngb-alert>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col">
+      <h3>Buttons <i class="fa fa-cross"></i></h3>
+      <h4>Checkbox</h4>
+      <div class="btn-group btn-group-toggle">
+        <label class="btn-primary" ngbButtonLabel>
+          <input type="checkbox" ngbButton [(ngModel)]="checkboxModel.left"> Left (pre-checked)
+        </label>
+        <label class="btn-primary" ngbButtonLabel>
+          <input type="checkbox" ngbButton [(ngModel)]="checkboxModel.middle"> Middle
+        </label>
+        <label class="btn-primary" ngbButtonLabel>
+          <input type="checkbox" ngbButton [(ngModel)]="checkboxModel.right"> Right
+        </label>
+      </div>
+      <hr>
+      <pre>{{checkboxModel | json}}</pre>
+      <h4>Checkbox (reactive)</h4>
+      <form [formGroup]="checkboxGroupForm">
+        <div class="btn-group btn-group-toggle">
+          <label class="btn-primary" ngbButtonLabel>
+            <input type="checkbox" formControlName="left" ngbButton> Left (pre-checked)
+          </label>
+          <label class="btn-primary" ngbButtonLabel>
+            <input type="checkbox" formControlName="middle" ngbButton> Middle
+          </label>
+          <label class="btn-primary" ngbButtonLabel>
+            <input type="checkbox" formControlName="right" ngbButton> Right
+          </label>
+        </div>
+      </form>
+      <hr>
+      <pre>{{checkboxGroupForm.value | json}}</pre>
+      <h4>Radio</h4>
+      <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="radioModel">
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="1"> Left (pre-checked)
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" value="middle"> Middle
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="false"> Right
+        </label>
+      </div>
+      <hr>
+      <pre>{{radioModel}}</pre>
+      <h4>Radio (reactive)</h4>
+      <form [formGroup]="radioGroupForm">
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="model">
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="1"> Left (pre-checked)
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="middle"> Middle
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="false"> Right
+          </label>
+        </div>
+      </form>
+      <hr>
+      <pre>{{radioGroupForm.value['model']}}</pre>
+      <h4>Known issues</h4>
+      <ul>
+        <li>
+          Angular does not pass back the <span class="text-monospace">`$event.target.checked`</span> values from change events to the Worker.<br>
+          TODO Raise github issue
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col">
+      <h3>Carousel <i class="fa fa-check"></i></h3>
+      <ngb-carousel *ngIf="images">
+        <ng-template ngbSlide>
+          <img [src]="images[0]" alt="Random first slide">
+          <div class="carousel-caption">
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <img [src]="images[1]" alt="Random second slide">
+          <div class="carousel-caption">
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <img [src]="images[2]" alt="Random third slide">
+          <div class="carousel-caption">
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col">
+      <h3>Collapse <i class="fa fa-check"></i></h3>
+      <p>
+        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+          Toggle
+        </button>
+      </p>
+      <div id="collapseExample" [ngbCollapse]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+            You can collapse this card by clicking Toggle
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div style="text-align:center">
-    <h1>
-      Welcome to {{ title }}!
-    </h1>
-    <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
+  <div class="row mb-5">
+    <div class="col">
+      <h3>Datepicker (disabled) <i class="fa fa-times"></i></h3>
+      <!--<form class="form-inline">-->
+        <!--<div class="form-group">-->
+          <!--<div class="input-group">-->
+            <!--<input class="form-control" placeholder="yyyy-mm-dd"-->
+                   <!--name="dp" [(ngModel)]="dateModel" ngbDatepicker #d="ngbDatepicker">-->
+            <!--<div class="input-group-append">-->
+              <!--<button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">-->
+                <!--<img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>-->
+              <!--</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</form>-->
+
+      <!--<hr/>-->
+      <!--<pre>Model: {{ dateModel | json }}</pre>-->
+      <h4>Known issues</h4>
+      <ul>
+        <li>
+          NgbFocusTrap references <span class="text-monospace">`Document`</span> which doesn't exist on the Worker.<br>
+          TODO Fork NgbFocusTrap and attempt to work around the issue by using Renderer2
+        </li>
+      </ul>
+    </div>
   </div>
-  <h2>Here are some links to help you start: </h2>
-  <ul>
-    <li>
-      <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-    </li>
-    <li>
-      <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-    </li>
-    <li>
-      <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-    </li>
-  </ul>
+
+  <div class="row mb-5">
+    <div class="col">
+      <h3>Dropdown (forked code) <i class="fa fa-times"></i></h3>
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item" (click)="dropdownItemClick(1)">Action - 1</button>
+          <button class="dropdown-item" (click)="dropdownItemClick(2)">Another Action</button>
+          <button class="dropdown-item" (click)="dropdownItemClick(3)">Something else is here</button>
+        </div>
+      </div>
+      <h4>Known issues</h4>
+      <ul>
+        <li>
+          Angular does not pass back the <span class="text-monospace">`$event.target`</span> value from a mouse event to the Worker.<br>
+          <a href="https://github.com/angular/angular/issues/23703">Github issue</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

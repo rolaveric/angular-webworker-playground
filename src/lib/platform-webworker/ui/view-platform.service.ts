@@ -1,18 +1,22 @@
 import { FactoryProvider, Injectable, Injector, NgZone, PLATFORM_INITIALIZER } from '@angular/core';
-import { ServiceMessageBrokerFactory, ServiceMessageBroker } from '@angular/platform-webworker';
+import { ServiceMessageBrokerFactory, ServiceMessageBroker, SerializerTypes } from '@angular/platform-webworker';
 
-import { DOM_CONTAINS_CHANNEL, PRIMITIVE, RENDER_STORE_OBJECT } from '../shared/tokens';
-import { DomContainsService } from '../../common';
+import { VIEW_PLATFORM_SERVICE_CHANNEL } from '../shared/channels';
+import { ViewPlatformService } from '../../common';
 
+/**
+ * UI service for the WebWorker implementation of the ViewPlatformService class.
+ * Proxies RPC messages to the real browser implementation.
+ */
 @Injectable()
-export class UiDomContainsService {
+export class UiViewPlatformService {
   private messageBroker: ServiceMessageBroker;
 
   constructor(
     private messageBrokerFactory: ServiceMessageBrokerFactory,
-    private domContainsService: DomContainsService
+    private domContainsService: ViewPlatformService
   ) {
-    this.messageBroker = this.messageBrokerFactory.createMessageBroker(DOM_CONTAINS_CHANNEL);
+    this.messageBroker = this.messageBrokerFactory.createMessageBroker(VIEW_PLATFORM_SERVICE_CHANNEL);
   }
 
   /**
@@ -22,9 +26,9 @@ export class UiDomContainsService {
     // domContainsService.contains()
     this.messageBroker.registerMethod(
       'contains',
-      [RENDER_STORE_OBJECT, RENDER_STORE_OBJECT],
+      [SerializerTypes.RENDER_STORE_OBJECT, SerializerTypes.RENDER_STORE_OBJECT],
       (a, b) => this.domContainsService.contains(a, b).toPromise(),
-      PRIMITIVE
+      SerializerTypes.PRIMITIVE
     );
   }
 }
@@ -33,11 +37,11 @@ export class UiDomContainsService {
 function platformInitFnFactory(injector: Injector) {
   return () => {
     const zone: NgZone = injector.get(NgZone);
-    zone.runGuarded(() => injector.get(UiDomContainsService).start());
+    zone.runGuarded(() => injector.get(UiViewPlatformService).start());
   };
 }
 
-export const platformInitDomContainsProvider: FactoryProvider = {
+export const platformInitViewPlatformServiceProvider: FactoryProvider = {
   provide: PLATFORM_INITIALIZER,
   useFactory: platformInitFnFactory,
   multi: true,

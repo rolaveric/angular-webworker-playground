@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { DomContainsService } from './dom-contains.service';
+import { ViewPlatformService } from './view-platform.service';
 
 @NgModule({})
 export class AppCommonModule {
@@ -8,7 +8,7 @@ export class AppCommonModule {
     return {
       ngModule: AppCommonModule,
       providers: [
-        DomContainsService
+        ViewPlatformService
       ]
     };
   }

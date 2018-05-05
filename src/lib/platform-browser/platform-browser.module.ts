@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { DomContainsService } from '../common';
-import { BrowserDomContainsService } from './dom-contains.service';
+import { ViewPlatformService } from '../common';
+import { BrowserViewPlatformService } from './view-platform.service';
 
 @NgModule({})
 export class AppPlatformBrowserModule {
@@ -9,7 +9,7 @@ export class AppPlatformBrowserModule {
     return {
       ngModule: AppPlatformBrowserModule,
       providers: [
-        {provide: DomContainsService, useClass: BrowserDomContainsService}
+        {provide: ViewPlatformService, useClass: BrowserViewPlatformService}
       ]
     };
   }

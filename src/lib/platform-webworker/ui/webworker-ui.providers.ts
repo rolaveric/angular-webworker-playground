@@ -3,9 +3,9 @@ import { StaticProvider } from '@angular/core';
 import { TransferState } from '@angular/platform-browser';
 
 import { Positioning } from '../../ng-bootstrap/util/positioning';
-import { DomContainsService } from '../../common';
-import { BrowserDomContainsService } from '../../platform-browser';
-import { UiDomContainsService, platformInitDomContainsProvider } from './dom-contains.service';
+import { ViewPlatformService } from '../../common';
+import { BrowserViewPlatformService } from '../../platform-browser';
+import { UiViewPlatformService, platformInitViewPlatformServiceProvider } from './view-platform.service';
 import { platformInitPositioningProvider, UiPositioning } from './positioning';
 
 export const APP_WEB_WORKER_UI_PROVIDERS: StaticProvider[] = [
@@ -14,14 +14,14 @@ export const APP_WEB_WORKER_UI_PROVIDERS: StaticProvider[] = [
   {provide: TransferState, useClass: TransferState, deps: []},
 
   // Browser platform services
-  {provide: DomContainsService, useClass: BrowserDomContainsService, deps: []},
+  {provide: ViewPlatformService, useClass: BrowserViewPlatformService, deps: []},
   {provide: Positioning, useClass: Positioning, deps: []},
 
   // Message broker services
-  {provide: UiDomContainsService, deps: [ServiceMessageBrokerFactory, DomContainsService]},
+  {provide: UiViewPlatformService, deps: [ServiceMessageBrokerFactory, ViewPlatformService]},
   {provide: UiPositioning, deps: [ServiceMessageBrokerFactory, Positioning]},
 
   // PLATFORM_INITIALIZER providers
-  platformInitDomContainsProvider,
+  platformInitViewPlatformServiceProvider,
   platformInitPositioningProvider
 ];

@@ -1,2 +1,2 @@
 export { AppCommonModule } from './common.module';
-export { DomContainsService } from './dom-contains.service';
+export { ViewPlatformService } from './view-platform.service';

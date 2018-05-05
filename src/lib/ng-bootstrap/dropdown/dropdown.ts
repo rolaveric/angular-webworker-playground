@@ -9,15 +9,15 @@ import {
   ContentChild,
   NgZone,
   Renderer2,
-  OnInit, HostListener
-} from "@angular/core";
-import {filter, switchMap} from 'rxjs/operators';
+  OnInit,
+  HostListener
+} from '@angular/core';
+import {EMPTY, of} from 'rxjs';
+import {filter, switchMap, tap} from 'rxjs/operators';
 
-import {DomContainsService} from "../../common";
-import {NgbDropdownConfig} from "./dropdown-config";
-import {PlacementArray, Placement, Positioning} from "../util/positioning";
-import {EMPTY, empty, of} from "rxjs/index";
-import {tap} from "rxjs/internal/operators";
+import {ViewPlatformService} from '../../common';
+import {NgbDropdownConfig} from './dropdown-config';
+import {PlacementArray, Placement, Positioning} from '../util/positioning';
 
 /**
  */
@@ -33,11 +33,11 @@ export class NgbDropdownMenu {
     @Inject(forwardRef(() => NgbDropdown)) public dropdown,
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
-    private _domContainsService: DomContainsService,
+    private _viewPlatform: ViewPlatformService,
     private _positioning: Positioning
   ) {}
 
-  isEventFrom(eventTarget) {return this._domContainsService.contains(this._elementRef.nativeElement, eventTarget); }
+  isEventFrom(eventTarget) { return this._viewPlatform.contains(this._elementRef.nativeElement, eventTarget); }
 
   position(triggerEl, placement) {
     this._positioning.positionElements(triggerEl, this._elementRef.nativeElement, placement)
@@ -45,18 +45,19 @@ export class NgbDropdownMenu {
   }
 
   applyPlacement(_placement: Placement) {
+    const parentNode = this._renderer.parentNode(this._elementRef.nativeElement);
     // remove the current placement classes
-    this._renderer.removeClass(this.dropdown.dropdownEl.nativeElement, 'dropup');
-    this._renderer.removeClass(this.dropdown.dropdownEl.nativeElement, 'dropdown');
+    this._renderer.removeClass(parentNode, 'dropup');
+    this._renderer.removeClass(parentNode, 'dropdown');
     this.placement = _placement;
     /**
      * apply the new placement
      * in case of top use up-arrow or down-arrow otherwise
      */
     if (_placement.search('^top') !== -1) {
-      this._renderer.addClass(this.dropdown.dropdownEl.nativeElement, 'dropup');
+      this._renderer.addClass(parentNode, 'dropup');
     } else {
-      this._renderer.addClass(this.dropdown.dropdownEl.nativeElement, 'dropdown');
+      this._renderer.addClass(parentNode, 'dropdown');
     }
   }
 }
@@ -79,12 +80,12 @@ export class NgbDropdownAnchor {
   constructor(
     @Inject(forwardRef(() => NgbDropdown)) public dropdown,
     private _elementRef: ElementRef,
-    private _domContainsService: DomContainsService
+    private _viewPlatform: ViewPlatformService
   ) {
     this.anchorEl = _elementRef.nativeElement;
   }
 
-  isEventFrom(eventTarget) { return this._domContainsService.contains(this._elementRef.nativeElement, eventTarget); }
+  isEventFrom(eventTarget) { return this._viewPlatform.contains(this._elementRef.nativeElement, eventTarget); }
 }
 
 /**
@@ -105,8 +106,8 @@ export class NgbDropdownToggle extends NgbDropdownAnchor {
   constructor(
     @Inject(forwardRef(() => NgbDropdown)) dropdown,
     elementRef: ElementRef,
-    domContainsService: DomContainsService
-  ) { super(dropdown, elementRef, domContainsService); }
+    viewPlatform: ViewPlatformService
+  ) { super(dropdown, elementRef, viewPlatform); }
 
   toggleOpen() { this.dropdown.toggle(); }
 }
@@ -157,7 +158,7 @@ export class NgbDropdown implements OnInit {
    */
   @Output() openChange = new EventEmitter();
 
-  constructor(config: NgbDropdownConfig, ngZone: NgZone, public dropdownEl: ElementRef) {
+  constructor(config: NgbDropdownConfig, ngZone: NgZone) {
     this.placement = config.placement;
     this.autoClose = config.autoClose;
     this._zoneSubscription = ngZone.onStable.subscribe(() => { this._positionMenu(); });

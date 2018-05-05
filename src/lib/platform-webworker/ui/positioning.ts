@@ -1,7 +1,7 @@
 import { FactoryProvider, Injectable, Injector, NgZone, PLATFORM_INITIALIZER } from '@angular/core';
-import { ServiceMessageBrokerFactory, ServiceMessageBroker } from '@angular/platform-webworker';
+import { ServiceMessageBrokerFactory, ServiceMessageBroker, SerializerTypes } from '@angular/platform-webworker';
 
-import { POSITIONING_CHANNEL, PRIMITIVE, RENDER_STORE_OBJECT } from '../shared/tokens';
+import { POSITIONING_CHANNEL } from '../shared/channels';
 import { Positioning } from '../../ng-bootstrap/util/positioning';
 
 @Injectable()
@@ -22,9 +22,9 @@ export class UiPositioning {
     // positioning.positionElements()
     this.messageBroker.registerMethod(
       'positionElements',
-      [RENDER_STORE_OBJECT, RENDER_STORE_OBJECT, PRIMITIVE, PRIMITIVE],
+      [SerializerTypes.RENDER_STORE_OBJECT, SerializerTypes.RENDER_STORE_OBJECT, SerializerTypes.PRIMITIVE, SerializerTypes.PRIMITIVE],
       (a, b, c, d) => this.positioning.positionElements(a, b, c, d).toPromise(),
-      PRIMITIVE
+      SerializerTypes.PRIMITIVE
     );
   }
 }
