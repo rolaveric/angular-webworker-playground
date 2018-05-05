@@ -23,7 +23,7 @@ export class UiPositioning {
     this.messageBroker.registerMethod(
       'positionElements',
       [RENDER_STORE_OBJECT, RENDER_STORE_OBJECT, PRIMITIVE, PRIMITIVE],
-      this.positioning.positionElements.bind(this.positioning),
+      (a, b, c, d) => this.positioning.positionElements(a, b, c, d).toPromise(),
       PRIMITIVE
     );
   }

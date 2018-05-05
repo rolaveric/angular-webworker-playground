@@ -1,6 +1,7 @@
 // previous version:
 // https://github.com/angular-ui/bootstrap/blob/07c31d0731f7cb068a1932b8e01d2312b796b4ec/src/position/position.js
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class Positioning {
@@ -11,7 +12,7 @@ export class Positioning {
    * */
   public positionElements(
     hostElement: HTMLElement, targetElement: HTMLElement, placement: string | Placement | PlacementArray,
-    appendToBody?: boolean): Promise<Placement> {
+    appendToBody?: boolean): Observable<Placement> {
     let placementVals: Array<Placement> = Array.isArray(placement) ? placement : [placement as Placement];
 
     // replace auto placement with other placements
@@ -43,7 +44,7 @@ export class Positioning {
     }
     targetElement.style.top = `${topVal}px`;
     targetElement.style.left = `${leftVal}px`;
-    return Promise.resolve(appliedPlacement);
+    return of(appliedPlacement);
   }
 
   private getAllStyles(element: HTMLElement) { return window.getComputedStyle(element); }

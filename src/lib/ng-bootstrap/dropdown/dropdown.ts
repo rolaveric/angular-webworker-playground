@@ -11,9 +11,13 @@ import {
   Renderer2,
   OnInit, HostListener
 } from "@angular/core";
+import {filter, switchMap} from 'rxjs/operators';
+
 import {DomContainsService} from "../../common";
 import {NgbDropdownConfig} from "./dropdown-config";
 import {PlacementArray, Placement, Positioning} from "../util/positioning";
+import {EMPTY, empty, of} from "rxjs/index";
+import {tap} from "rxjs/internal/operators";
 
 /**
  */
@@ -37,7 +41,7 @@ export class NgbDropdownMenu {
 
   position(triggerEl, placement) {
     this._positioning.positionElements(triggerEl, this._elementRef.nativeElement, placement)
-      .then((resolvedPlacement) => this.applyPlacement(resolvedPlacement));
+      .subscribe((resolvedPlacement) => this.applyPlacement(resolvedPlacement));
   }
 
   applyPlacement(_placement: Placement) {
@@ -207,23 +211,26 @@ export class NgbDropdown implements OnInit {
   closeFromClick($event, targetElement) {
     console.log('NgbDropdown.closeFromClick() $event.target:', targetElement);
     if (this._open && this.autoClose && $event.button !== 2) {
-      this._isEventFromToggle(targetElement)
-        .then((isEventFromToggle) => {
-          if (!isEventFromToggle) {
-            if (this.autoClose === true) {
-              this.close();
-            } else if (this.autoClose) {
-              this._isEventFromMenu(targetElement)
-                .then((isEventFromMenu) => {
-                  if (this.autoClose === 'inside' && isEventFromMenu) {
-                    this.close();
-                  } else if (this.autoClose === 'outside' && !isEventFromMenu) {
-                    this.close();
-                  }
-                });
-            }
+      this._isEventFromToggle(targetElement).pipe(
+        filter((isEventFromToggle) => !isEventFromToggle),
+        switchMap(() => {
+          if (this.autoClose === true) {
+            return of(true);
+          } else if (this.autoClose) {
+            return this._isEventFromMenu(targetElement)
+              .pipe(filter((isEventFromMenu) => {
+                if (this.autoClose === 'inside' && isEventFromMenu) {
+                  return true;
+                } else if (this.autoClose === 'outside' && !isEventFromMenu) {
+                  return true;
+                }
+                return false;
+              }));
           }
-        });
+          return EMPTY;
+        }),
+        tap(() => this.close())
+      ).subscribe();
     }
   }
 
@@ -237,7 +244,7 @@ export class NgbDropdown implements OnInit {
 
   private _isEventFromToggle(eventTarget) { return this._anchor.isEventFrom(eventTarget); }
 
-  private _isEventFromMenu(eventTarget) { return this._menu ? this._menu.isEventFrom(eventTarget) : Promise.resolve(false); }
+  private _isEventFromMenu(eventTarget) { return this._menu ? this._menu.isEventFrom(eventTarget) : of(false); }
 
   private _positionMenu() {
     if (this.isOpen() && this._menu) {

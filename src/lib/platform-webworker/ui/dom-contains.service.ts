@@ -23,7 +23,7 @@ export class UiDomContainsService {
     this.messageBroker.registerMethod(
       'contains',
       [RENDER_STORE_OBJECT, RENDER_STORE_OBJECT],
-      this.domContainsService.contains.bind(this.domContainsService),
+      (a, b) => this.domContainsService.contains(a, b).toPromise(),
       PRIMITIVE
     );
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ClientMessageBroker, ClientMessageBrokerFactory, FnArg, UiArguments
 } from '@angular/platform-webworker';
+import { from, Observable } from 'rxjs';
 
 import { Placement, PlacementArray } from '../../ng-bootstrap/util/positioning';
 import { POSITIONING_CHANNEL, PRIMITIVE, RENDER_STORE_OBJECT } from '../shared/tokens';
@@ -16,7 +17,7 @@ export class WorkerPositioning {
 
   positionElements(
     hostElement: any, targetElement: any, placement: string | Placement | PlacementArray,
-    appendToBody?: boolean): Promise<Placement> {
+    appendToBody?: boolean): Observable<Placement> {
     const fnArgs = [
       new FnArg(hostElement, RENDER_STORE_OBJECT),
       new FnArg(targetElement, RENDER_STORE_OBJECT),
@@ -24,6 +25,6 @@ export class WorkerPositioning {
       new FnArg(appendToBody, PRIMITIVE)
     ];
     const uiArgs = new UiArguments('positionElements', fnArgs);
-    return this.messageBroker.runOnService(uiArgs, PRIMITIVE) as Promise<Placement>;
+    return from(this.messageBroker.runOnService(uiArgs, PRIMITIVE)) as Observable<Placement>;
   }
 }
