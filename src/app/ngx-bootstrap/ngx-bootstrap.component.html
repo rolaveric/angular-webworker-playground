@@ -1,0 +1,112 @@
+<section class="row mb-5 mt-3">
+  <div class="col">
+    <h2>ngx-bootstrap Features</h2>
+  </div>
+</section>
+
+<section class="row mb-5 mt-3">
+  <div class="col">
+    <h3>Accordion <i class="fa fa-check"></i></h3>
+    <accordion>
+      <accordion-group heading="Static Header, initially expanded">
+        This content is straight in the template.
+      </accordion-group>
+      <accordion-group>
+        <div accordion-heading class="clearfix">
+          I can have markup!
+          <span class="badge badge-secondary float-right pull-right">Some HTML here</span>
+        </div>
+        This is just some content to illustrate fancy headings.
+      </accordion-group>
+      <accordion-group heading="Another group">
+        <p>Some content</p>
+      </accordion-group>
+      <accordion-group heading="Another group">
+        <p>Some content</p>
+      </accordion-group>
+    </accordion>
+  </div>
+</section>
+
+<section class="row mb-5 mt-3">
+  <div class="col">
+    <h3>Alert <i class="fa fa-check"></i></h3>
+    <alert type="success">
+      <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+    </alert>
+  </div>
+</section>
+
+<section class="row mb-5 mt-3">
+  <div class="col">
+    <h3>Checkbox <i class="fa fa-check"></i></h3>
+    <pre class="card card-block card-header">{{checkModel | json}}</pre>
+
+    <div class="btn-group">
+      <label class="btn btn-primary" [(ngModel)]="checkModel.left"
+             btnCheckbox tabindex="0" role="button">Left</label>
+      <label class="btn btn-primary" [(ngModel)]="checkModel.middle"
+             btnCheckbox tabindex="0" role="button">Middle</label>
+      <label class="btn btn-primary" [(ngModel)]="checkModel.right"
+             btnCheckbox tabindex="0" role="button">Right</label>
+    </div>
+  </div>
+</section>
+
+<section class="row mb-5 mt-3">
+  <div class="col">
+    <h3>Carousel <i class="fa fa-check"></i></h3>
+    <carousel *ngIf="images$ | async as images">
+      <slide>
+        <img [src]="images[0]" alt="first slide" style="display: block; width: 100%;">
+      </slide>
+      <slide>
+        <img [src]="images[1]" alt="second slide" style="display: block; width: 100%;">
+      </slide>
+      <slide>
+        <img [src]="images[2]" alt="third slide" style="display: block; width: 100%;">
+      </slide>
+    </carousel>
+  </div>
+</section>
+
+<section class="row mb-5 mt-3">
+  <div class="col">
+    <h3>Collapse <i class="fa fa-check"></i></h3>
+    <button type="button" class="btn btn-primary"
+            (click)="isCollapsed = !isCollapsed">Toggle collapse
+    </button>
+    <hr>
+    <div [collapse]="isCollapsed" class="card card-block card-header">
+      <div class="well well-lg">Some content</div>
+    </div>
+  </div>
+</section>
+
+<section class="row mb-5 mt-3">
+  <div class="col">
+    <h3>Datepicker <i class="fa fa-times"></i></h3>
+    <div class="row">
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+        <input type="text"
+               placeholder="Datepicker"
+               class="form-control"
+               bsDatepicker>
+      </div>
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+        <input type="text"
+               placeholder="Daterangepicker"
+               class="form-control"
+               bsDaterangepicker>
+      </div>
+    </div>
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        Uses ngx-bootstrap's `ComponentLoaderFactory`, which directly manipulates with the DOM<br>
+        TODO Raise github issues
+      </li>
+    </ul>
+  </div>
+</section>
+

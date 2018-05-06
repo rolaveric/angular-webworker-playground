@@ -149,8 +149,6 @@ module.exports = {
       "./src/polyfills.ts"
     ],
     "styles": [
-      "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-      "./node_modules/font-awesome/css/font-awesome.min.css",
       "./src/styles.css"
     ],
     "webworker": [
@@ -187,8 +185,6 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.min.css"),
-          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.min.css"),
           path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.css$/,
@@ -208,8 +204,6 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.min.css"),
-          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.min.css"),
           path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.scss$|\.sass$/,
@@ -237,8 +231,6 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.min.css"),
-          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.min.css"),
           path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.less$/,
@@ -264,8 +256,6 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.min.css"),
-          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.min.css"),
           path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.styl$/,
@@ -292,8 +282,6 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.min.css"),
-          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.min.css"),
           path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.css$/,
@@ -314,8 +302,6 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.min.css"),
-          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.min.css"),
           path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.scss$|\.sass$/,
@@ -344,8 +330,6 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.min.css"),
-          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.min.css"),
           path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.less$/,
@@ -372,8 +356,6 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.min.css"),
-          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.min.css"),
           path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.styl$/,

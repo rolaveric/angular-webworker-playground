@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
-import { map } from 'rxjs/operators';
+import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ModalComponent } from './modal.component';
+import { Observable } from 'rxjs/index';
 
 @Component({
   selector: 'ww-ng-bootstrap',
@@ -12,7 +13,7 @@ import { ModalComponent } from './modal.component';
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NgBootstrapComponent implements OnInit {
+export class NgBootstrapComponent {
   checkboxModel = {
     left: true,
     middle: false,
@@ -28,11 +29,12 @@ export class NgBootstrapComponent implements OnInit {
     'model': 1
   });
 
-  images: Array<string>;
+  images$ = this._http.get('https://picsum.photos/list')
+    .pipe(map((images: Array<{id: number}>) => this._randomImageUrls(images)));
 
   isCollapsed = false;
 
-  dateModel;
+  dateModel: any;
 
   closeResult: string;
 
@@ -40,17 +42,33 @@ export class NgBootstrapComponent implements OnInit {
 
   currentRate = 8;
 
+  time = {hour: 13, minute: 30};
+
+  states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
+    'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
+    'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+    'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+    'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+    'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
+    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
+    'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+  typeaheadModel: any;
+
+  search = (text$: Observable<string>) => {
+    return text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : this.states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    );
+  };
+
   constructor(
     private fb: FormBuilder,
     private _http: HttpClient,
     private modalService: NgbModal
   ) {}
-
-  ngOnInit() {
-    this._http.get('https://picsum.photos/list')
-      .pipe(map((images: Array<{id: number}>) => this._randomImageUrls(images)))
-      .subscribe(images => this.images = images);
-  }
 
   private _randomImageUrls(images: Array<{id: number}>): Array<string> {
     return [1, 2, 3].map(() => {

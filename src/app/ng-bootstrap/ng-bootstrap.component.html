@@ -1,10 +1,10 @@
-<div class="row mb-5 mt-3">
+<section class="row mb-5 mt-3">
   <div class="col">
     <h2>ng-bootstrap Features</h2>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <h3>Accordion <i class="fa fa-exclamation-triangle"></i></h3>
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
@@ -50,9 +50,9 @@
       </li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Alert <i class="fa fa-check"></i></h3>
@@ -60,9 +60,9 @@
       <strong>Warning!</strong> Better check yourself, you're not looking too good.
     </ngb-alert>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Buttons <i class="fa fa-cross"></i></h3>
@@ -135,13 +135,13 @@
       </li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Carousel <i class="fa fa-check"></i></h3>
-    <ngb-carousel *ngIf="images">
+    <ngb-carousel *ngIf="images$ | async as images">
       <ng-template ngbSlide>
         <img [src]="images[0]" alt="Random first slide">
         <div class="carousel-caption">
@@ -165,9 +165,9 @@
       </ng-template>
     </ngb-carousel>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Collapse <i class="fa fa-check"></i></h3>
@@ -185,9 +185,9 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Datepicker (disabled) <i class="fa fa-times"></i></h3>
@@ -215,9 +215,9 @@
       </li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Dropdown (custom code) <i class="fa fa-times"></i></h3>
@@ -237,9 +237,9 @@
       </li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Modal <i class="fa fa-times"></i></h3>
@@ -278,9 +278,9 @@
       </li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Pagination <i class="fa fa-check"></i></h3>
@@ -297,9 +297,9 @@
 
     <pre>Current page: {{page}}</pre>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Popover <i class="fa fa-times"></i></h3>
@@ -330,9 +330,9 @@
       </li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Progressbar <i class="fa fa-check"></i></h3>
@@ -341,9 +341,9 @@
     <p><ngb-progressbar type="warning" [value]="75"></ngb-progressbar></p>
     <p><ngb-progressbar type="danger" [value]="100"></ngb-progressbar></p>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Rating <i class="fa fa-times"></i></h3>
@@ -360,9 +360,9 @@
       </li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="row mb-5">
+<section class="row mb-5">
   <div class="col">
     <hr>
     <h3>Tabset <i class="fa fa-times"></i></h3>
@@ -401,4 +401,66 @@
       </li>
     </ul>
   </div>
-</div>
+</section>
+
+<section class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Timepicker <i class="fa fa-check"></i></h3>
+    <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+    <hr>
+    <pre>Selected time: {{time | json}}</pre>
+  </div>
+</section>
+
+<section class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Tooltip <i class="fa fa-times"></i></h3>
+    <button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbTooltip="Tooltip on top">
+      Tooltip on top
+    </button>
+    <button type="button" class="btn btn-outline-secondary mr-2" placement="right" ngbTooltip="Tooltip on right">
+      Tooltip on right
+    </button>
+    <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom" ngbTooltip="Tooltip on bottom">
+      Tooltip on bottom
+    </button>
+    <button type="button" class="btn btn-outline-secondary mr-2" placement="left" ngbTooltip="Tooltip on left">
+      Tooltip on left
+    </button>
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        The positioning library does a lot of calculations which involve directly querying the DOM.<br>
+        TODO Create custom version that uses async positioning library with message broker wrapper, same as dropdown
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Typeahead <i class="fa fa-times"></i></h3>
+    A typeahead example that gets values from a static <code>string[]</code>
+    <ul>
+      <li><code>debounceTime</code> operator</li>
+      <li>kicks in only if 2+ characters typed</li>
+      <li>limits to 10 results</li>
+    </ul>
+
+    <label for="typeahead-basic">Search for a state:</label>
+    <!--<input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="typeaheadModel" [ngbTypeahead]="search"/>-->
+    <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="typeaheadModel">
+    <hr>
+    <pre>Model: {{ typeaheadModel | json }}</pre>
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        The <span class="text-monospace">`util/accessibility/live.js`</span> library does a lot of DOM manipulation without using Renderer2.<br>
+        TODO Raise PR to refactor <span class="text-monospace">`live.js`</span> to use <span class="text-monospace">`Renderer2`</span>.
+      </li>
+    </ul>
+  </div>
+</section>

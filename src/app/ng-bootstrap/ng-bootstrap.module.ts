@@ -13,7 +13,10 @@ import {
   NgbPopoverModule,
   NgbProgressbarModule,
   NgbRatingModule,
-  NgbTabsetModule
+  NgbTabsetModule,
+  NgbTimepickerModule,
+  NgbTooltipModule,
+  NgbTypeaheadModule
 } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbDropdownModule } from '../../lib/ng-bootstrap/dropdown/dropdown.module';
@@ -38,6 +41,9 @@ import { ModalComponent } from './modal.component';
     NgbProgressbarModule,
     NgbRatingModule,
     NgbTabsetModule,
+    NgbTimepickerModule,
+    NgbTooltipModule,
+    NgbTypeaheadModule,
 
     NgbDropdownModule // Custom version
   ],

@@ -13,8 +13,16 @@ import {
   NgbPopoverModule,
   NgbProgressbarModule,
   NgbRatingModule,
-  NgbTabsetModule
+  NgbTabsetModule,
+  NgbTimepickerModule,
+  NgbTooltipModule,
+  NgbTypeaheadModule
 } from '@ng-bootstrap/ng-bootstrap';
+import {
+  AccordionModule,
+  AlertModule,
+  ButtonsModule, CarouselModule, CollapseModule, DatepickerModule
+} from 'ngx-bootstrap';
 
 import { AppCommonModule } from '../lib/common';
 import { NgbDropdownModule } from '../lib/ng-bootstrap/dropdown/dropdown.module';
@@ -42,9 +50,19 @@ import { AppRoutingModule } from './app.routing-module';
     NgbProgressbarModule.forRoot(),
     NgbRatingModule.forRoot(),
     NgbTabsetModule.forRoot(),
+    NgbTimepickerModule.forRoot(),
+    NgbTooltipModule.forRoot(),
+    NgbTypeaheadModule.forRoot(),
+
+    AccordionModule.forRoot(),
+    AlertModule.forRoot(),
 
     NgbDropdownModule.forRoot(), // Custom version
     AppCommonModule.forRoot(),
+    ButtonsModule.forRoot(),
+    CarouselModule.forRoot(),
+    CollapseModule.forRoot(),
+    DatepickerModule.forRoot(),
 
     AppRoutingModule
   ],
