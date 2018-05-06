@@ -1,11 +1,11 @@
 # angular-webworker-playground
 
-Playground for seeing `platform-webworker` from Angular in action
+Playground for seeing `platform-webworker` from Angular in action, and testing popular UI libraries with it.
 
 This project is a typical Angular CLI built application, with a few additions:
 * `src/lib/*` folders for different platforms.
 * Scripts and entry points for all 3 platform types: browser, server, and webworker:
-`npm/yarn start`, `npm/yarn run start-server`, and `npm/yarn run start-webworker`
+`npm/yarn run start-browser`, `npm/yarn run start-server`, and `npm/yarn run start-webworker`
 
 # Tips for using `platform-webworker`
 
@@ -18,7 +18,7 @@ function platformInitFnFactory(injector: Injector) {
   };
 }
 
-export const platformInitDomAccessorProvider: FactoryProvider = {
+export const platformInitMyUiServiceProvider: FactoryProvider = {
   provide: PLATFORM_INITIALIZER,
   useFactory: platformInitFnFactory,
   multi: true,
@@ -87,7 +87,7 @@ export const appInitMyServiceProvider: FactoryProvider = {
 
 Handling DOM interactions in `platform-server` is much simpler for 2 reasons:
 
-1. `platform-server` uses Domino (TODO get link) to simulate the DOM on the server
+1. `platform-server` uses [Domino](https://github.com/fgnass/domino) to simulate the DOM on the server
 2. `platform-server` shouldn't need to deal with most key or mouse events, since it's just rendering the first paint
 
 The important things with `platform-server` are:
@@ -96,10 +96,20 @@ The important things with `platform-server` are:
 If you're just using `platform-server` for SEO, or if your #1 priority is battery optimization, that's fine.
 Otherwise you should prevent `platform-server` from running anything that takes too long. 
 
+# Known platform-webworker issues
+
+* `$event.target` is undefined for all mouse events
+* `$event.target.checked` is undefined for `change` events
+* Code splitting/lazy loading does not currently work  
+This is more an issue with Webpack, which sets up everything expecting to use `window` and JSONP.  
+Likely a Webpack plugin/loader that can solve this.
+
 # TODO
 
-* Fix `@HostListener()` not including render store object for `$event.target` in `platform-webworker`
-* Test with UI component libraries:
-** ng-bootstrap
-** ngx-bootstrap
-** Angular material
+* Demo Angular features - specially those with known issues
+* Demo ng-bootstrap UI components
+* Demo ngx-bootstrap UI components
+* Demo Angular Material UI components
+* Find other UI libraries to test
+* Setup scripts to switch CSS frameworks (bootstrap 3, bootstrap 4, and material)
+* Find webpack plugin/loader for lazy loading on web workers

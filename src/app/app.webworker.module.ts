@@ -1,5 +1,6 @@
 import { WorkerAppModule } from '@angular/platform-webworker';
 import { NgModule } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { AppPlatformWebWorkerModule } from '../lib/platform-webworker';
 
@@ -11,6 +12,9 @@ import { AppComponent } from './app.component';
     AppModule,
     WorkerAppModule,
     AppPlatformWebWorkerModule.forRoot()
+  ],
+  providers: [
+    {provide: APP_BASE_HREF, useValue: ''}
   ],
   bootstrap: [AppComponent]
 })

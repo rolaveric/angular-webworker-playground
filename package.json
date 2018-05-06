@@ -4,11 +4,14 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "run-s start-webworker",
+    "build": "run-s build-webworker",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+
+    "build-browser": "ng build --prod",
+    "start-browser": "ng serve",
 
     "build-server": "run-s build build-server:clean build-server:ngcli build-server:webpack",
     "build-server:clean": "shx rm -rf dist/server && shx mkdir -p dist/server",
