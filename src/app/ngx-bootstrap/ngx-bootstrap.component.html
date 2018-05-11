@@ -4,7 +4,7 @@
   </div>
 </section>
 
-<section class="row mb-5 mt-3">
+<section id="ngx-bootstrap-accordion" class="row mb-5 mt-3">
   <div class="col">
     <h3>Accordion <i class="fa fa-check"></i></h3>
     <accordion>
@@ -28,7 +28,7 @@
   </div>
 </section>
 
-<section class="row mb-5 mt-3">
+<section id="ngx-bootstrap-alert" class="row mb-5 mt-3">
   <div class="col">
     <h3>Alert <i class="fa fa-check"></i></h3>
     <alert type="success">
@@ -37,7 +37,7 @@
   </div>
 </section>
 
-<section class="row mb-5 mt-3">
+<section id="ngx-bootstrap-checkbox" class="row mb-5 mt-3">
   <div class="col">
     <h3>Checkbox <i class="fa fa-check"></i></h3>
     <pre class="card card-block card-header">{{checkModel | json}}</pre>
@@ -53,7 +53,7 @@
   </div>
 </section>
 
-<section class="row mb-5 mt-3">
+<section id="ngx-bootstrap-carousel" class="row mb-5 mt-3">
   <div class="col">
     <h3>Carousel <i class="fa fa-check"></i></h3>
     <carousel *ngIf="images$ | async as images">
@@ -70,7 +70,7 @@
   </div>
 </section>
 
-<section class="row mb-5 mt-3">
+<section id="ngx-bootstrap-collapse" class="row mb-5 mt-3">
   <div class="col">
     <h3>Collapse <i class="fa fa-check"></i></h3>
     <button type="button" class="btn btn-primary"
@@ -83,7 +83,7 @@
   </div>
 </section>
 
-<section class="row mb-5 mt-3">
+<section id="ngx-bootstrap-datepicker" class="row mb-5 mt-3">
   <div class="col">
     <h3>Datepicker <i class="fa fa-times"></i></h3>
     <div class="row">
@@ -100,6 +100,35 @@
                bsDaterangepicker>
       </div>
     </div>
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        Uses ngx-bootstrap's `ComponentLoaderFactory`, which directly manipulates with the DOM<br>
+        TODO Raise github issues
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="ngx-bootstrap-dropdown" class="row mb-5 mt-3">
+  <div class="col">
+    <h3>Dropdown <i class="fa fa-times"></i></h3>
+    <p>Disabled: <span class="text-monospace">`document:click`</span> listener breaks any other clicks on the page</p>
+    <!--<div class="btn-group" dropdown>-->
+      <!--<button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"-->
+              <!--aria-controls="dropdown-basic">-->
+        <!--Button dropdown <span class="caret"></span>-->
+      <!--</button>-->
+      <!--<ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"-->
+          <!--role="menu" aria-labelledby="button-basic">-->
+        <!--<li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>-->
+        <!--<li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>-->
+        <!--<li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>-->
+        <!--<li class="divider dropdown-divider"></li>-->
+        <!--<li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
     <h4>Known issues</h4>
     <ul>
       <li>

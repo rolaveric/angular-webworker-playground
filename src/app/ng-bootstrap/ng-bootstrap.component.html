@@ -4,7 +4,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:accordion" class="row mb-5">
   <div class="col">
     <h3>Accordion <i class="fa fa-exclamation-triangle"></i></h3>
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
@@ -52,7 +52,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:alert" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Alert <i class="fa fa-check"></i></h3>
@@ -62,7 +62,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:buttons" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Buttons <i class="fa fa-cross"></i></h3>
@@ -137,7 +137,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:carousel" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Carousel <i class="fa fa-check"></i></h3>
@@ -167,7 +167,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:collapse" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Collapse <i class="fa fa-check"></i></h3>
@@ -187,7 +187,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:datepicker" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Datepicker (disabled) <i class="fa fa-times"></i></h3>
@@ -217,20 +217,30 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:dropdown" class="row mb-5">
   <div class="col">
     <hr>
-    <h3>Dropdown (custom code) <i class="fa fa-times"></i></h3>
-    <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button class="dropdown-item" (click)="dropdownItemClick(1)">Action - 1</button>
-        <button class="dropdown-item" (click)="dropdownItemClick(2)">Another Action</button>
-        <button class="dropdown-item" (click)="dropdownItemClick(3)">Something else is here</button>
-      </div>
-    </div>
+    <h3>Dropdown<i class="fa fa-times"></i></h3>
+    <p>Disabled: <span class="text-monospace">`document:click`</span> listener breaks any other clicks on the page</p>
+    <!--<div ngbDropdown class="d-inline-block">-->
+      <!--<button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>-->
+      <!--<div ngbDropdownMenu aria-labelledby="dropdownBasic1">-->
+        <!--<button class="dropdown-item" (click)="dropdownItemClick(1)">Action - 1</button>-->
+        <!--<button class="dropdown-item" (click)="dropdownItemClick(2)">Another Action</button>-->
+        <!--<button class="dropdown-item" (click)="dropdownItemClick(3)">Something else is here</button>-->
+      <!--</div>-->
+    <!--</div>-->
     <h4>Known issues</h4>
     <ul>
+      <li>
+        The <span class="text-monospace">`util/positioning.js`</span> library does a lot of DOM manipulation without using Renderer2.<br>
+        With the amount of processing going on, best option would be to make <span class="text-monospace">`positionElements()`</span> so it can run entirely on the UI thread.<br>
+        TODO Create github issue
+      </li>
+      <li>
+        Use of <span class="text-monospace">`host`</span> in your @Directive decorator doesn't appear to work.<br>
+        TODO Raise github issue to use <span class="text-monospace">`@HostBinding()`</span> and <span class="text-monospace">`@HostListener()`</span> decorators
+      </li>
       <li>
         Angular does not pass back the <span class="text-monospace">`$event.target`</span> value from a mouse event to the Worker.<br>
         <a href="https://github.com/angular/angular/issues/23703">Github issue</a>
@@ -239,7 +249,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:modal" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Modal <i class="fa fa-times"></i></h3>
@@ -280,7 +290,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:pagination" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Pagination <i class="fa fa-check"></i></h3>
@@ -299,7 +309,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:popover" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Popover <i class="fa fa-times"></i></h3>
@@ -332,7 +342,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:progressbar" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Progressbar <i class="fa fa-check"></i></h3>
@@ -343,7 +353,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:rating" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Rating <i class="fa fa-times"></i></h3>
@@ -362,7 +372,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:tabset" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Tabset <i class="fa fa-times"></i></h3>
@@ -403,7 +413,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:timepicker" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Timepicker <i class="fa fa-check"></i></h3>
@@ -413,7 +423,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:tooltip" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Tooltip <i class="fa fa-times"></i></h3>
@@ -439,7 +449,7 @@
   </div>
 </section>
 
-<section class="row mb-5">
+<section id="ng-bootstrap:typeahead" class="row mb-5">
   <div class="col">
     <hr>
     <h3>Typeahead <i class="fa fa-times"></i></h3>

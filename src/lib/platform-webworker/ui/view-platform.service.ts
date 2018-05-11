@@ -14,7 +14,7 @@ export class UiViewPlatformService {
 
   constructor(
     private messageBrokerFactory: ServiceMessageBrokerFactory,
-    private domContainsService: ViewPlatformService
+    private viewPlatformService: ViewPlatformService
   ) {
     this.messageBroker = this.messageBrokerFactory.createMessageBroker(VIEW_PLATFORM_SERVICE_CHANNEL);
   }
@@ -23,12 +23,26 @@ export class UiViewPlatformService {
    * Called when the UI app is ready, via the PLATFORM_INITIALIZER token
    */
   start() {
-    // domContainsService.contains()
+    // viewPlatformService.contains()
     this.messageBroker.registerMethod(
       'contains',
       [SerializerTypes.RENDER_STORE_OBJECT, SerializerTypes.RENDER_STORE_OBJECT],
-      (a, b) => this.domContainsService.contains(a, b).toPromise(),
+      (a, b) => this.viewPlatformService.contains(a, b).toPromise(),
       SerializerTypes.PRIMITIVE
+    );
+    // viewPlatformService.scrollIntoView()
+    this.messageBroker.registerMethod(
+      'scrollIntoView',
+      [SerializerTypes.RENDER_STORE_OBJECT],
+      (a) => this.viewPlatformService.scrollIntoView(a),
+      null
+    );
+    // viewPlatformService.getElementById()
+    this.messageBroker.registerMethod(
+      'getElementById',
+      [SerializerTypes.PRIMITIVE],
+      (a) => this.viewPlatformService.getElementById(a).toPromise(),
+      SerializerTypes.RENDER_STORE_OBJECT
     );
   }
 }

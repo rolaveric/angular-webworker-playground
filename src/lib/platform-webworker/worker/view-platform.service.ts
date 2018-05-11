@@ -30,4 +30,20 @@ export class WorkerViewPlatformService extends ViewPlatformService {
     const uiArgs = new UiArguments('contains', fnArgs);
     return from(this.messageBroker.runOnService(uiArgs, SerializerTypes.PRIMITIVE)) as Observable<boolean>;
   }
+
+  scrollIntoView(element: any): void {
+    const fnArgs = [
+      new FnArg(element, SerializerTypes.RENDER_STORE_OBJECT)
+    ];
+    const uiArgs = new UiArguments('scrollIntoView', fnArgs);
+    this.messageBroker.runOnService(uiArgs, null);
+  }
+
+  getElementById(id: string): Observable<any | null> {
+    const fnArgs = [
+      new FnArg(id, SerializerTypes.PRIMITIVE)
+    ];
+    const uiArgs = new UiArguments('getElementById', fnArgs);
+    return from(this.messageBroker.runOnService(uiArgs, SerializerTypes.RENDER_STORE_OBJECT));
+  }
 }

@@ -13,4 +13,12 @@ export class ViewPlatformService {
   public contains(ancestor: any, descendant: any): Observable<boolean> {
     throw new Error('ViewPlatformService.contains() has not been implemented for this platform');
   }
+
+  public scrollIntoView(element: any): void {
+    throw new Error('ViewPlatformService.scrollIntoView() has not been implemented for this platform');
+  }
+
+  public getElementById(id: string): Observable<any | null> {
+    throw new Error('ViewPlatformService.getElementById() has not been implemented for this platform');
+  }
 }

@@ -9,6 +9,10 @@ import { NgBootstrapComponent } from './ng-bootstrap/ng-bootstrap.component';
 import { NgxBootstrapComponent } from './ngx-bootstrap/ngx-bootstrap.component';
 import { NgBootstrapModule } from './ng-bootstrap/ng-bootstrap.module';
 import { NgxBootstrapModule } from './ngx-bootstrap/ngx-bootstrap.module';
+import { NgxBootstrapNavComponent } from './ngx-bootstrap/ngx-bootstrap-nav.component';
+import { NgBootstrapNavComponent } from './ng-bootstrap/ng-bootstrap-nav.component';
+import { MaterialNavComponent } from './material/material-nav.component';
+import { AngularNavComponent } from './angular/angular-nav.component';
 
 const routes: Routes = [
   // If the path is *nothing*, go to the demo-tab
@@ -17,7 +21,17 @@ const routes: Routes = [
   // Routes
   {
     path: 'angular',
-    component: AngularComponent
+    children: [
+      {
+        path: '',
+        component: AngularComponent
+      },
+      {
+        path: '',
+        component: AngularNavComponent,
+        outlet: 'sidenav'
+      }
+    ]
   },
   // {
   //   path: 'lazy',
@@ -25,15 +39,45 @@ const routes: Routes = [
   // },
   {
     path: 'material',
-    component: MaterialComponent
+    children: [
+      {
+        path: '',
+        component: MaterialComponent
+      },
+      {
+        path: '',
+        component: MaterialNavComponent,
+        outlet: 'sidenav'
+      }
+    ]
   },
   {
     path: 'ng-bootstrap',
-    component: NgBootstrapComponent
+    children: [
+      {
+        path: '',
+        component: NgBootstrapComponent
+      },
+      {
+        path: '',
+        component: NgBootstrapNavComponent,
+        outlet: 'sidenav'
+      }
+    ]
   },
   {
     path: 'ngx-bootstrap',
-    component: NgxBootstrapComponent
+    children: [
+      {
+        path: '',
+        component: NgxBootstrapComponent
+      },
+      {
+        path: '',
+        component: NgxBootstrapNavComponent,
+        outlet: 'sidenav'
+      }
+    ]
   }
 ];
 

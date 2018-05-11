@@ -1,7 +1,7 @@
 import { enableProdMode } from '@angular/core';
 import { bootstrapWorkerUi } from '@angular/platform-webworker';
 
-import { APP_WEB_WORKER_UI_PROVIDERS } from './lib/platform-webworker';
+import { APP_WEB_WORKER_UI_PROVIDERS } from './lib/platform-webworker/ui/public_api';
 
 import { environment } from './environments/environment';
 

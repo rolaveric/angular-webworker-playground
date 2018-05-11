@@ -16,7 +16,12 @@
     </nav>
   </header>
 
-  <main>
-    <router-outlet></router-outlet>
-  </main>
+  <div class="row">
+    <main class="col-9">
+      <router-outlet></router-outlet>
+    </main>
+    <aside class="col-3">
+      <router-outlet name="sidenav"></router-outlet>
+    </aside>
+  </div>
 </div>

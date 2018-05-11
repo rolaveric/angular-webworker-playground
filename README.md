@@ -107,9 +107,10 @@ Likely a Webpack plugin/loader that can solve this.
 # TODO
 
 * Demo Angular features - specially those with known issues
-* Demo ng-bootstrap UI components
+* Test Angular v6's `providedIn: root` behavior
 * Demo ngx-bootstrap UI components
 * Demo Angular Material UI components
+* Log github issues for the problems that were found
 * Find other UI libraries to test
 * Setup scripts to switch CSS frameworks (bootstrap 3, bootstrap 4, and material)
 * Find webpack plugin/loader for lazy loading on web workers

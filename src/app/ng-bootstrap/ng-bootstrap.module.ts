@@ -8,6 +8,7 @@ import {
   NgbCarouselModule,
   NgbCollapseModule,
   NgbDatepickerModule,
+  NgbDropdownModule,
   NgbModalModule,
   NgbPaginationModule,
   NgbPopoverModule,
@@ -19,9 +20,9 @@ import {
   NgbTypeaheadModule
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { NgbDropdownModule } from '../../lib/ng-bootstrap/dropdown/dropdown.module';
 import { NgBootstrapComponent } from './ng-bootstrap.component';
 import { ModalComponent } from './modal.component';
+import { NgBootstrapNavComponent } from './ng-bootstrap-nav.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { ModalComponent } from './modal.component';
     NgbCarouselModule,
     NgbCollapseModule,
     NgbDatepickerModule,
+    NgbDropdownModule,
     NgbModalModule,
     NgbPaginationModule,
     NgbPopoverModule,
@@ -43,16 +45,18 @@ import { ModalComponent } from './modal.component';
     NgbTabsetModule,
     NgbTimepickerModule,
     NgbTooltipModule,
-    NgbTypeaheadModule,
-
-    NgbDropdownModule // Custom version
+    NgbTypeaheadModule
   ],
   declarations: [
     NgBootstrapComponent,
+    NgBootstrapNavComponent,
     ModalComponent
   ],
   providers: [],
-  exports: [NgBootstrapComponent],
+  exports: [
+    NgBootstrapComponent,
+    NgBootstrapNavComponent
+  ],
   entryComponents: [
     ModalComponent
   ]

@@ -7,7 +7,8 @@ import {
   NgbButtonsModule,
   NgbCarouselModule,
   NgbCollapseModule,
-  NgbDatepickerModule,
+  // NgbDatepickerModule,
+  NgbDropdownModule,
   NgbModalModule,
   NgbPaginationModule,
   NgbPopoverModule,
@@ -21,11 +22,24 @@ import {
 import {
   AccordionModule,
   AlertModule,
-  ButtonsModule, CarouselModule, CollapseModule, DatepickerModule
+  BsDropdownModule,
+  ButtonsModule,
+  CarouselModule,
+  CollapseModule,
+  DatepickerModule,
+  ModalModule,
+  PaginationModule,
+  PopoverModule,
+  ProgressbarModule,
+  RatingModule,
+  SortableModule,
+  TabsModule,
+  TimepickerModule,
+  TooltipModule,
+  TypeaheadModule
 } from 'ngx-bootstrap';
 
 import { AppCommonModule } from '../lib/common';
-import { NgbDropdownModule } from '../lib/ng-bootstrap/dropdown/dropdown.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing-module';
 
@@ -38,12 +52,14 @@ import { AppRoutingModule } from './app.routing-module';
 
     HttpClientModule,
 
+    // ng-bootstrap
     NgbAccordionModule.forRoot(),
     NgbAlertModule.forRoot(),
     NgbButtonsModule.forRoot(),
     NgbCarouselModule.forRoot(),
     NgbCollapseModule.forRoot(),
     // NgbDatepickerModule.forRoot(), // Throws a 'Document is not defined' error
+    NgbDropdownModule.forRoot(),
     NgbModalModule.forRoot(),
     NgbPaginationModule.forRoot(),
     NgbPopoverModule.forRoot(),
@@ -54,16 +70,26 @@ import { AppRoutingModule } from './app.routing-module';
     NgbTooltipModule.forRoot(),
     NgbTypeaheadModule.forRoot(),
 
+    // ngx-bootstrap
     AccordionModule.forRoot(),
     AlertModule.forRoot(),
-
-    NgbDropdownModule.forRoot(), // Custom version
-    AppCommonModule.forRoot(),
     ButtonsModule.forRoot(),
     CarouselModule.forRoot(),
     CollapseModule.forRoot(),
     DatepickerModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
+    PaginationModule.forRoot(),
+    PopoverModule.forRoot(),
+    ProgressbarModule.forRoot(),
+    RatingModule.forRoot(),
+    SortableModule.forRoot(),
+    TabsModule.forRoot(),
+    TimepickerModule.forRoot(),
+    TooltipModule.forRoot(),
+    TypeaheadModule.forRoot(),
 
+    AppCommonModule.forRoot(),
     AppRoutingModule
   ],
   providers: [],
