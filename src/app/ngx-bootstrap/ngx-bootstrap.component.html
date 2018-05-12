@@ -4,7 +4,7 @@
   </div>
 </section>
 
-<section id="ngx-bootstrap-accordion" class="row mb-5 mt-3">
+<section id="ngx-bootstrap:accordion" class="row mb-5 mt-3">
   <div class="col">
     <h3>Accordion <i class="fa fa-check"></i></h3>
     <accordion>
@@ -28,8 +28,9 @@
   </div>
 </section>
 
-<section id="ngx-bootstrap-alert" class="row mb-5 mt-3">
+<section id="ngx-bootstrap:alert" class="row mb-5 mt-3">
   <div class="col">
+    <hr>
     <h3>Alert <i class="fa fa-check"></i></h3>
     <alert type="success">
       <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
@@ -37,8 +38,9 @@
   </div>
 </section>
 
-<section id="ngx-bootstrap-checkbox" class="row mb-5 mt-3">
+<section id="ngx-bootstrap:checkbox" class="row mb-5 mt-3">
   <div class="col">
+    <hr>
     <h3>Checkbox <i class="fa fa-check"></i></h3>
     <pre class="card card-block card-header">{{checkModel | json}}</pre>
 
@@ -53,8 +55,9 @@
   </div>
 </section>
 
-<section id="ngx-bootstrap-carousel" class="row mb-5 mt-3">
+<section id="ngx-bootstrap:carousel" class="row mb-5 mt-3">
   <div class="col">
+    <hr>
     <h3>Carousel <i class="fa fa-check"></i></h3>
     <carousel *ngIf="images$ | async as images">
       <slide>
@@ -70,8 +73,9 @@
   </div>
 </section>
 
-<section id="ngx-bootstrap-collapse" class="row mb-5 mt-3">
+<section id="ngx-bootstrap:collapse" class="row mb-5 mt-3">
   <div class="col">
+    <hr>
     <h3>Collapse <i class="fa fa-check"></i></h3>
     <button type="button" class="btn btn-primary"
             (click)="isCollapsed = !isCollapsed">Toggle collapse
@@ -83,8 +87,9 @@
   </div>
 </section>
 
-<section id="ngx-bootstrap-datepicker" class="row mb-5 mt-3">
+<section id="ngx-bootstrap:datepicker" class="row mb-5 mt-3">
   <div class="col">
+    <hr>
     <h3>Datepicker <i class="fa fa-times"></i></h3>
     <div class="row">
       <div class="col-xs-12 col-12 col-md-4 form-group">
@@ -110,8 +115,9 @@
   </div>
 </section>
 
-<section id="ngx-bootstrap-dropdown" class="row mb-5 mt-3">
+<section id="ngx-bootstrap:dropdown" class="row mb-5 mt-3">
   <div class="col">
+    <hr>
     <h3>Dropdown <i class="fa fa-times"></i></h3>
     <p>Disabled: <span class="text-monospace">`document:click`</span> listener breaks any other clicks on the page</p>
     <!--<div class="btn-group" dropdown>-->
@@ -139,3 +145,209 @@
   </div>
 </section>
 
+<section id="ngx-bootstrap:modal" class="row mb-5 mt-3">
+  <div class="col">
+    <hr>
+    <h3>Modal <i class="fa fa-times"></i></h3>
+    <h4>Template</h4>
+    <button type="button" class="btn btn-primary" (click)="openTemplateModal(template)">Create template modal</button>
+
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="templateModalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        This is a modal.
+      </div>
+    </ng-template>
+
+    <hr>
+
+    <h4>Component</h4>
+
+    <button type="button" class="btn btn-primary" (click)="openModalWithComponent()">Create modal with component</button>
+
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        Uses ngx-bootstrap's `ModalContainerComponent` which directly access `document`, along with other DOM APIs.<br>
+        TODO Raise github issues
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="ngx-bootstrap:pagination" class="row mb-5 mt-3">
+  <div class="col">
+    <hr>
+    <h3>Pagination <i class="fa fa-times"></i></h3>
+    <p>Disabled: <span class="text-monospace">`[innerHtml]`</span> broken in platform-webworker.</p>
+    <!--<pagination [totalItems]="30" [(ngModel)]="currentPage"></pagination>-->
+    <pre>{{currentPage}}</pre>
+
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        Uses `[innerHtml]`, which activates `DomSanitizerImpl` on the Worker, which then tries to directly use `DOCUMENT`.
+        Needs to work through something like the Renderer, or have a `platform-webworker` specific implementation.<br>
+        TODO Raise github issues
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="ngx-bootstrap:popover" class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Popover <i class="fa fa-times"></i></h3>
+    <button
+      type="button"
+      class="btn btn-primary"
+      popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+    >
+      Live demo
+    </button>
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        The positioning library `ngx-bootstrap/positioning/ng-positioning.js` does a lot of calculations which involve directly querying the DOM.<br>
+        TODO Create custom version that uses async positioning library with message broker wrapper, same as dropdown
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="ngx-bootstrap:progressbar" class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Progressbar <i class="fa fa-check"></i></h3>
+    <p><progressbar [value]="55"></progressbar></p>
+    <p><progressbar [value]="22" type="warning" [striped]="true">22%</progressbar></p>
+    <p><progressbar max="200" [value]="166" type="danger" [striped]="true" [animate]="true"><i>166 / 200</i></progressbar></p>
+  </div>
+</section>
+
+<section id="ngx-bootstrap:rating" class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Rating <i class="fa fa-times"></i></h3>
+    <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"
+            (onHover)="hoveringOver($event)" (onLeave)="resetStar()"
+            [titles]="['one','two','three']"></rating>
+    <span class="label"
+          [ngClass]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
+          [ngStyle]="{display: (overStar && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span>
+    <div class="card">
+      <pre class="card-block card-header" style="margin:15px 0;">Rate: <b>{{rate}}</b>;  Readonly is: <i>{{isReadonly}}</i>;  Hovering over: <b>{{overStar || "none"}}</b></pre>
+    </div>
+
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        Component doesn't react to mouse events (mouse over or clicks)<br>
+        Unsure what the root cause is.<br>
+        TODO Find root cause and raise github issues
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="ngx-bootstrap:sortable" class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Sortable <i class="fa fa-times"></i></h3>
+    <div class="row">
+      <div class="col-xs-6 col-6 col-md-5 col-lg-3">
+        <bs-sortable
+          [(ngModel)]="itemStringsLeft"
+          itemClass="sortable-item"
+          itemActiveClass="sortable-item-active"
+          placeholderItem="Drag here"
+          placeholderClass="placeholderStyle"
+          wrapperClass="sortable-wrapper"
+        ></bs-sortable>
+        <pre class="code-preview">model: {{ itemStringsLeft | json }}</pre>
+      </div>
+      <div class="col-xs-6 col-6 col-md-5 col-lg-3">
+        <bs-sortable
+          [(ngModel)]="itemStringsRight"
+          itemClass="sortable-item"
+          itemActiveClass="sortable-item-active"
+          placeholderItem="Drag here"
+          placeholderClass="sortable-item"
+          wrapperClass="sortable-wrapper"
+        ></bs-sortable>
+        <pre class="code-preview">model: {{ itemStringsRight | json }}</pre>
+      </div>
+    </div>
+
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        Component doesn't react to mouse drag events<br>
+        Unsure what the root cause is. Could either be drag events related or templateOutlet related<br>
+        TODO Find root cause and raise github issues
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="ngx-bootstrap:tabset" class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Tabset <i class="fa fa-check"></i></h3>
+    <tabset>
+      <tab heading="Basic title" id="tab1">Basic content</tab>
+      <tab heading="Basic Title 1">Basic content 1</tab>
+      <tab heading="Basic Title 2">Basic content 2</tab>
+    </tabset>
+  </div>
+</section>
+
+<section id="ngx-bootstrap:timepicker" class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Timepicker <i class="fa fa-check"></i></h3>
+    <timepicker [(ngModel)]="mytime"></timepicker>
+    <pre class="alert alert-info">Time is: {{mytime}}</pre>
+  </div>
+</section>
+
+<section id="ngx-bootstrap:tooltip" class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Tooltip <i class="fa fa-times"></i></h3>
+    <button type="button" class="btn btn-primary"
+            tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      Simple demo
+    </button>
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        The positioning library `ngx-bootstrap/positioning/ng-positioning.js` does a lot of calculations which involve directly querying the DOM.<br>
+        TODO Create custom version that uses async positioning library with message broker wrapper, same as dropdown
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="ngx-bootstrap:typeahead" class="row mb-5">
+  <div class="col">
+    <hr>
+    <h3>Typeahead <i class="fa fa-times"></i></h3>
+    <pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
+    <input [(ngModel)]="selected"
+           [typeahead]="states"
+           class="form-control">
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        Keypresses do nothing. Unsure root cause.<br>
+        TODO Find root cause. Raise github issues.
+      </li>
+    </ul>
+  </div>
+</section>

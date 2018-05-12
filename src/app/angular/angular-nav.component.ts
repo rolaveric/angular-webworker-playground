@@ -9,7 +9,7 @@ import { ViewPlatformService } from '../../lib/common';
       <a
         *ngFor="let section of sections"
         class="nav-link"
-        (click)="scrollTo('angular-' + section.id)"
+        (click)="scrollTo('angular:' + section.id)"
       >{{section.label}}</a>
     </nav>
   `,
@@ -17,7 +17,14 @@ import { ViewPlatformService } from '../../lib/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AngularNavComponent {
-  sections = [];
+  sections = [
+    {id: 'innerHtml', label: '[innerHtml]'},
+    {id: 'ngTemplateOutlet', label: '[ngTemplateOutlet]'},
+    {id: 'event-mouseover', label: '(mouseover)'},
+    {id: 'event-mouseleave', label: '(mouseleave)'},
+    {id: 'event-drag', label: '(drag*)'},
+    {id: 'animations', label: 'Animations'},
+  ];
 
   constructor(private viewPlatformService: ViewPlatformService) {}
 

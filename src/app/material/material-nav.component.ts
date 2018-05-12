@@ -9,7 +9,7 @@ import { ViewPlatformService } from '../../lib/common';
       <a
         *ngFor="let section of sections"
         class="nav-link"
-        (click)="scrollTo('material-' + section.id)"
+        (click)="scrollTo('material:' + section.id)"
       >{{section.label}}</a>
     </nav>
   `,
@@ -17,7 +17,10 @@ import { ViewPlatformService } from '../../lib/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MaterialNavComponent {
-  sections = [];
+  sections = [
+    {id: 'autocomplete', label: 'Autocomplete'},
+    {id: 'checkbox', label: 'Checkbox'},
+  ];
 
   constructor(private viewPlatformService: ViewPlatformService) {}
 

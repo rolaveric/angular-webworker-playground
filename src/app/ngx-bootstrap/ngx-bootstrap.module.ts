@@ -21,6 +21,7 @@ import {
 
 import { NgxBootstrapComponent } from './ngx-bootstrap.component';
 import { NgxBootstrapNavComponent } from './ngx-bootstrap-nav.component';
+import { ModalContentComponent } from './modal-content.component';
 
 @NgModule({
   imports: [
@@ -48,12 +49,16 @@ import { NgxBootstrapNavComponent } from './ngx-bootstrap-nav.component';
   ],
   declarations: [
     NgxBootstrapComponent,
-    NgxBootstrapNavComponent
+    NgxBootstrapNavComponent,
+    ModalContentComponent
   ],
   providers: [],
   exports: [
     NgxBootstrapComponent,
     NgxBootstrapNavComponent
+  ],
+  entryComponents: [
+    ModalContentComponent
   ]
 })
 export class NgxBootstrapModule {}

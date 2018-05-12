@@ -1,6 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/font-awesome/css/font-awesome.min.css";
 
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+/* Bootstrap */
+/*@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";*/
+/*@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";*/
 
-@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+/* Material */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Sortable */
+.sortable-item {
+  padding: 6px 12px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 1.4em;
+  text-align: center;
+  cursor: grab;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  border-color: #adadad;
+}
+
+.sortable-item-active {
+  background-color: #e6e6e6;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+
+.sortable-wrapper {
+  min-height: 150px;
+}
+

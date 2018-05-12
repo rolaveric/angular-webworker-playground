@@ -9,7 +9,7 @@ import { ViewPlatformService } from '../../lib/common';
       <a
         *ngFor="let section of sections"
         class="nav-link"
-        (click)="scrollTo('ngx-bootstrap-' + section.id)"
+        (click)="scrollTo('ngx-bootstrap:' + section.id)"
       >{{section.label}}</a>
     </nav>
   `,
@@ -25,6 +25,16 @@ export class NgxBootstrapNavComponent {
     {id: 'collapse', label: 'Collapse'},
     {id: 'datepicker', label: 'Datepicker'},
     {id: 'dropdown', label: 'Dropdown'},
+    {id: 'modal', label: 'Modal'},
+    {id: 'pagination', label: 'Pagination'},
+    {id: 'popover', label: 'Popover'},
+    {id: 'progressbar', label: 'Progressbar'},
+    {id: 'rating', label: 'Rating'},
+    {id: 'sortable', label: 'Sortable'},
+    {id: 'tabset', label: 'Tabset'},
+    {id: 'timepicker', label: 'Timepicker'},
+    {id: 'tooltip', label: 'Tooltip'},
+    {id: 'typeahead', label: 'Typeahead'}
   ];
 
   constructor(private viewPlatformService: ViewPlatformService) {}

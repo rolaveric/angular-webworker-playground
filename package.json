@@ -9,17 +9,14 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-
     "build-browser": "ng build --prod",
     "start-browser": "ng serve",
-
     "build-server": "run-s build build-server:clean build-server:ngcli build-server:webpack",
     "build-server:clean": "shx rm -rf dist/server && shx mkdir -p dist/server",
     "build-server:ngcli": "ng build --app server --aot --output-hashing=none --output-path dist/server",
     "build-server:webpack": "webpack --config webpack.server.config.js --progress --colors",
     "start-server": "run-s build-server start-server:express",
     "start-server:express": "node dist/server",
-
     "build-webworker": "run-s build-webworker:clean build-webworker:webpack",
     "build-webworker:clean": "shx rm -rf dist/webworker && shx mkdir -p dist/webworker",
     "build-webworker:webpack": "webpack --config webpack.webworker.config.js --progress --colors",
@@ -46,6 +43,7 @@
     "@nguniversal/module-map-ngfactory-loader": "6.0.0",
     "core-js": "2.5.6",
     "font-awesome": "4.7.0",
+    "hammerjs": "^2.0.8",
     "ngx-bootstrap": "2.0.5",
     "rxjs": "6.1.0",
     "rxjs-compat": "6.1.0",
