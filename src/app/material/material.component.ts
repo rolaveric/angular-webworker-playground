@@ -1,5 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatBottomSheet, MatDialog } from '@angular/material';
+
+import { DynamicDatabase, DynamicDataSource, DynamicFlatNode } from './tree';
+import { BottomSheetComponent } from './bottom-sheet.component';
+import { DialogComponent } from './dialog';
 
 @Component({
   selector: 'ww-material',
@@ -99,6 +105,54 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
     .demo-tab-content {
       padding: 16px;
     }
+
+    .example-tree-progress-bar {
+      margin-left: 30px;
+    }
+
+    .example-button-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .example-selected-value {
+      margin: 15px 0;
+    }
+
+    mat-chip {
+      max-width: 200px;
+    }
+
+    .example-h2 {
+      margin: 10px;
+    }
+
+    .example-section {
+      display: flex;
+      align-content: center;
+      align-items: center;
+      height: 60px;
+    }
+
+    .example-margin {
+      margin: 0 10px;
+    }
+
+    .example-h2 {
+      margin: 10px;
+    }
+
+    .example-section {
+      display: flex;
+      align-content: center;
+      align-items: center;
+      height: 60px;
+    }
+
+    .example-margin {
+      margin: 0 10px;
+    }
   `]
 })
 export class MaterialComponent implements OnInit {
@@ -183,7 +237,35 @@ export class MaterialComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  availableColors = [
+    { name: 'none', color: '' },
+    { name: 'Primary', color: 'primary' },
+    { name: 'Accent', color: 'accent' },
+    { name: 'Warn', color: 'warn' }
+  ];
+
+  treeControl: FlatTreeControl<DynamicFlatNode>;
+
+  dataSource: DynamicDataSource;
+
+  mode = 'determinate';
+
+  bufferValue = 75;
+
+  animal: string;
+  name: string;
+
+  constructor(
+    private _formBuilder: FormBuilder,
+    // private bottomSheet: MatBottomSheet,
+    // public dialog: MatDialog,
+    database: DynamicDatabase
+  ) {
+    this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
+    this.dataSource = new DynamicDataSource(this.treeControl, database);
+
+    this.dataSource.data = database.initialData();
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -192,5 +274,27 @@ export class MaterialComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+  }
+
+  getLevel = (node: DynamicFlatNode) => node.level;
+
+  isExpandable = (node: DynamicFlatNode) => node.expandable;
+
+  hasChild = (_: number, _nodeData: DynamicFlatNode) => _nodeData.expandable;
+
+  openBottomSheet(): void {
+    // this.bottomSheet.open(BottomSheetComponent);
+  }
+
+  openDialog(): void {
+    // const dialogRef = this.dialog.open(DialogComponent, {
+    //   width: '250px',
+    //   data: { name: this.name, animal: this.animal }
+    // });
+    //
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.animal = result;
+    // });
   }
 }

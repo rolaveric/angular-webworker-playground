@@ -42,6 +42,9 @@ import { CdkTableModule } from '@angular/cdk/table';
 
 import { MaterialComponent } from './material.component';
 import { MaterialNavComponent } from './material-nav.component';
+import { DynamicDatabase, DynamicDataSource } from './tree';
+import { BottomSheetComponent } from './bottom-sheet.component';
+import { DialogComponent } from './dialog';
 
 @NgModule({
   imports: [
@@ -88,12 +91,21 @@ import { MaterialNavComponent } from './material-nav.component';
   ],
   declarations: [
     MaterialComponent,
-    MaterialNavComponent
+    MaterialNavComponent,
+    BottomSheetComponent,
+    DialogComponent
   ],
-  providers: [],
+  providers: [
+    DynamicDatabase,
+    DynamicDataSource
+  ],
   exports: [
     MaterialComponent,
     MaterialNavComponent
+  ],
+  entryComponents: [
+    BottomSheetComponent,
+    DialogComponent
   ]
 })
 export class MaterialModule {}
