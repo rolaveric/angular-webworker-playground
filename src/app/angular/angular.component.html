@@ -8,12 +8,15 @@
   <div class="col">
     <hr>
     <h3>[innerHtml] <i class="fa fa-times"></i></h3>
+    <p>Disabled: Error kills whole view</p>
+    <!--<p [innerHtml]="htmlString"></p>-->
 
     <h4>Known issues</h4>
     <ul>
       <li>
-        Not tested.<br>
-        TODO Test
+        Throws error "Cannot read property 'implementation' of null" from "InertBodyHelper",
+        which is part of the sanitiser implementation<br>
+        TODO Raise issue
       </li>
     </ul>
   </div>
@@ -22,45 +25,33 @@
 <section id="angular:ngTemplateOutlet" class="row mb-5 mt-3">
   <div class="col">
     <hr>
-    <h3>[ngTemplateOutlet] <i class="fa fa-times"></i></h3>
+    <h3>[ngTemplateOutlet] <i class="fa fa-exclamation-triangle"></i></h3>
 
-    <h4>Known issues</h4>
-    <ul>
-      <li>
-        Not tested.<br>
-        TODO Test
-      </li>
-    </ul>
+    <ng-container *ngTemplateOutlet="greet"></ng-container>
+    <hr>
+    <ng-container *ngTemplateOutlet="eng; context: myContext"></ng-container>
+    <hr>
+    <ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
+    <hr>
+
+    <ng-template #greet><span>Hello</span></ng-template>
+    <ng-template #eng let-name><span>Hello {{name}}!</span></ng-template>
+    <ng-template #svk let-person="localSk"><span>Ahoj {{person}}!</span></ng-template>
+
+    <p>TODO Add more complex template outlets. eg. event listeners</p>
   </div>
 </section>
 
 <section id="angular:event-mouseover" class="row mb-5 mt-3">
   <div class="col">
     <hr>
-    <h3>(mouseover) <i class="fa fa-times"></i></h3>
+    <h3>(mouseover) and (mouseleave) <i class="fa fa-check"></i></h3>
 
-    <h4>Known issues</h4>
-    <ul>
-      <li>
-        Not tested.<br>
-        TODO Test
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section id="angular:event-mouseleave" class="row mb-5 mt-3">
-  <div class="col">
-    <hr>
-    <h3>(mouseleave) <i class="fa fa-times"></i></h3>
-
-    <h4>Known issues</h4>
-    <ul>
-      <li>
-        Not tested.<br>
-        TODO Test
-      </li>
-    </ul>
+    <p (mouseover)="mousedOver()" (mouseleave)="mouseLeft()"
+       [style.border]="showMouseOverBorder ? '5px solid black': '0 solid black'"
+    >
+      Mouse over here to show a border
+    </p>
   </div>
 </section>
 
@@ -69,11 +60,32 @@
     <hr>
     <h3>(drag*) <i class="fa fa-times"></i></h3>
 
+    <p
+      draggable="true"
+      ondragstart="console.log('custom dragstart');event.dataTransfer.setData('text/plain', 'drag data');event.dataTransfer.dropEffect = 'copy';"
+      ondragend="console.log('custom dragend')"
+      (dragstart)="dragStart($event)"
+      (dragend)="dragEnd($event)"
+    >Draggable</p>
+
+    <div
+      class="dropzone"
+      ondragover="console.log('custom dragover');event.preventDefault();event.dataTransfer.dropEffect='copy';"
+      ondrop="console.log('custom drop');event.preventDefault();"
+      (dragenter)="dragEnter($event)"
+      (dragleave)="dragLeave($event)"
+      (dragover)="dragOver($event)"
+      (dragexit)="dragExit($event)"
+      (drop)="drop($event)"
+    >
+      Drop zone
+    </div>
+
     <h4>Known issues</h4>
     <ul>
       <li>
-        Not tested.<br>
-        TODO Test
+        None of the 'drag*' event listeners created with Angular syntax appear to work.<br>
+        TODO Raise issue.
       </li>
     </ul>
   </div>

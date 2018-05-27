@@ -1177,16 +1177,44 @@
   </div>
 </section>
 
-<section id="material:chips" class="row mb-5 mt-3">
+<section id="material:snackbar" class="row mb-5 mt-3">
   <div class="col">
     <hr>
-    <h3>Chips <i class="fa fa-times"></i></h3>
+    <h3>Snackbar <i class="fa fa-times"></i></h3>
     <p>Disabled: missing provider error shutsdown whole app</p>
-    <!--<mat-chip-list class="mat-chip-list-stacked">-->
-    <!--<mat-chip *ngFor="let chip of availableColors" selected="true" [color]="chip.color">-->
-    <!--{{chip.name}}-->
-    <!--</mat-chip>-->
-    <!--</mat-chip-list>-->
+    <!--<button mat-button (click)="openSnackBar()" aria-label="Show an example snack-bar">-->
+      <!--Pizza party-->
+    <!--</button>-->
+
+    <h4>Known issues</h4>
+    <ul>
+      <li>
+        Raises an error complaining that `ScrollStrategyOptions` provider is undefined.<br>
+        TODO Find ScrollStrategyOptions provider. Raise issue
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="material:tooltip" class="row mb-5 mt-3">
+  <div class="col">
+    <hr>
+    <h3>Tooltip <i class="fa fa-times"></i></h3>
+    <p>Disabled: missing provider error shutsdown whole app</p>
+    <!--<mat-form-field class="example-user-input">-->
+      <!--<mat-select placeholder="Tooltip position" [formControl]="position">-->
+        <!--<mat-option *ngFor="let positionOption of positionOptions" [value]="positionOption">-->
+          <!--{{ positionOption }}-->
+        <!--</mat-option>-->
+      <!--</mat-select>-->
+    <!--</mat-form-field>-->
+
+    <!--<button mat-raised-button-->
+            <!--matTooltip="Info about the action"-->
+            <!--[matTooltipPosition]="position.value"-->
+            <!--aria-label="Button that displays a tooltip in various positions">-->
+      <!--Action-->
+    <!--</button>-->
 
     <h4>Known issues</h4>
     <ul>
@@ -1198,16 +1226,39 @@
   </div>
 </section>
 
-<section id="material:chips" class="row mb-5 mt-3">
+<section id="material:paginator" class="row mb-5 mt-3">
   <div class="col">
     <hr>
-    <h3>Chips <i class="fa fa-times"></i></h3>
+    <h3>Paginator <i class="fa fa-times"></i></h3>
     <p>Disabled: missing provider error shutsdown whole app</p>
-    <!--<mat-chip-list class="mat-chip-list-stacked">-->
-    <!--<mat-chip *ngFor="let chip of availableColors" selected="true" [color]="chip.color">-->
-    <!--{{chip.name}}-->
-    <!--</mat-chip>-->
-    <!--</mat-chip-list>-->
+    <!--<mat-form-field>-->
+      <!--List length:-->
+      <!--<input matInput [(ngModel)]="length">-->
+    <!--</mat-form-field>-->
+
+    <!--<mat-form-field>-->
+      <!--Page size:-->
+      <!--<input matInput [(ngModel)]="pageSize">-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field>-->
+      <!--Page size options:-->
+      <!--<input matInput-->
+             <!--[ngModel]="pageSizeOptions"-->
+             <!--(ngModelChange)="setPageSizeOptions($event)">-->
+    <!--</mat-form-field>-->
+
+    <!--<mat-paginator [length]="length"-->
+                   <!--[pageSize]="pageSize"-->
+                   <!--[pageSizeOptions]="pageSizeOptions"-->
+                   <!--(page)="pageEvent = $event">-->
+    <!--</mat-paginator>-->
+
+    <!--<div *ngIf="pageEvent">-->
+      <!--<h5>Page Change Event Properties</h5>-->
+      <!--<div>List length: {{pageEvent.length}}</div>-->
+      <!--<div>Page size: {{pageEvent.pageSize}}</div>-->
+      <!--<div>Page index: {{pageEvent.pageIndex}}</div>-->
+    <!--</div>-->
 
     <h4>Known issues</h4>
     <ul>
@@ -1219,58 +1270,77 @@
   </div>
 </section>
 
-<section id="material:chips" class="row mb-5 mt-3">
+<section id="material:sortheader" class="row mb-5 mt-3">
   <div class="col">
     <hr>
-    <h3>Chips <i class="fa fa-times"></i></h3>
-    <p>Disabled: missing provider error shutsdown whole app</p>
-    <!--<mat-chip-list class="mat-chip-list-stacked">-->
-    <!--<mat-chip *ngFor="let chip of availableColors" selected="true" [color]="chip.color">-->
-    <!--{{chip.name}}-->
-    <!--</mat-chip>-->
-    <!--</mat-chip-list>-->
+    <h3>Sort header <i class="fa fa-times"></i></h3>
+    <p>Disabled: bug stops the whole component view working</p>
+    <!--<table matSort (matSortChange)="sortData($event)">-->
+      <!--<tr>-->
+        <!--<th mat-sort-header="name">Dessert (100g)</th>-->
+        <!--<th mat-sort-header="calories">Calories</th>-->
+        <!--<th mat-sort-header="fat">Fat (g)</th>-->
+        <!--<th mat-sort-header="carbs">Carbs (g)</th>-->
+        <!--<th mat-sort-header="protein">Protein (g)</th>-->
+      <!--</tr>-->
+
+      <!--<tr *ngFor="let dessert of sortedData">-->
+        <!--<td>{{dessert.name}}</td>-->
+        <!--<td>{{dessert.calories}}</td>-->
+        <!--<td>{{dessert.fat}}</td>-->
+        <!--<td>{{dessert.carbs}}</td>-->
+        <!--<td>{{dessert.protein}}</td>-->
+      <!--</tr>-->
+    <!--</table>-->
 
     <h4>Known issues</h4>
     <ul>
       <li>
-        Raises an error complaining that `Platform` provider is undefined.<br>
-        TODO Find Platform provider. Raise issue
+        No error raised. Just stops the whole view from rendering.<br>
+        TODO Investigate root cause. Raise issue
       </li>
     </ul>
   </div>
 </section>
 
-<section id="material:chips" class="row mb-5 mt-3">
+<section id="material:table" class="row mb-5 mt-3">
   <div class="col">
     <hr>
-    <h3>Chips <i class="fa fa-times"></i></h3>
+    <h3>Table <i class="fa fa-times"></i></h3>
     <p>Disabled: missing provider error shutsdown whole app</p>
-    <!--<mat-chip-list class="mat-chip-list-stacked">-->
-    <!--<mat-chip *ngFor="let chip of availableColors" selected="true" [color]="chip.color">-->
-    <!--{{chip.name}}-->
-    <!--</mat-chip>-->
-    <!--</mat-chip-list>-->
+    <!--<mat-form-field>-->
+      <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
+    <!--</mat-form-field>-->
 
-    <h4>Known issues</h4>
-    <ul>
-      <li>
-        Raises an error complaining that `Platform` provider is undefined.<br>
-        TODO Find Platform provider. Raise issue
-      </li>
-    </ul>
-  </div>
-</section>
+    <!--<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">-->
 
-<section id="material:chips" class="row mb-5 mt-3">
-  <div class="col">
-    <hr>
-    <h3>Chips <i class="fa fa-times"></i></h3>
-    <p>Disabled: missing provider error shutsdown whole app</p>
-    <!--<mat-chip-list class="mat-chip-list-stacked">-->
-    <!--<mat-chip *ngFor="let chip of availableColors" selected="true" [color]="chip.color">-->
-    <!--{{chip.name}}-->
-    <!--</mat-chip>-->
-    <!--</mat-chip-list>-->
+      <!--&lt;!&ndash; Position Column &ndash;&gt;-->
+      <!--<ng-container matColumnDef="position">-->
+        <!--<th mat-header-cell *matHeaderCellDef> No. </th>-->
+        <!--<td mat-cell *matCellDef="let element"> {{element.position}} </td>-->
+      <!--</ng-container>-->
+
+      <!--&lt;!&ndash; Name Column &ndash;&gt;-->
+      <!--<ng-container matColumnDef="name">-->
+        <!--<th mat-header-cell *matHeaderCellDef> Name </th>-->
+        <!--<td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
+      <!--</ng-container>-->
+
+      <!--&lt;!&ndash; Weight Column &ndash;&gt;-->
+      <!--<ng-container matColumnDef="weight">-->
+        <!--<th mat-header-cell *matHeaderCellDef> Weight </th>-->
+        <!--<td mat-cell *matCellDef="let element"> {{element.weight}} </td>-->
+      <!--</ng-container>-->
+
+      <!--&lt;!&ndash; Symbol Column &ndash;&gt;-->
+      <!--<ng-container matColumnDef="symbol">-->
+        <!--<th mat-header-cell *matHeaderCellDef> Symbol </th>-->
+        <!--<td mat-cell *matCellDef="let element"> {{element.symbol}} </td>-->
+      <!--</ng-container>-->
+
+      <!--<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+      <!--<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+    <!--</table>-->
 
     <h4>Known issues</h4>
     <ul>
